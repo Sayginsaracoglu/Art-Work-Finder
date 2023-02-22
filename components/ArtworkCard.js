@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
 import Error from 'next/error';
 import useSWR from 'swr';
+import styles from '../styles/Card.module.css'
 
 
-function ArtworkCard({objectId}) {
+function ArtworkCard({objectId,imageOnly}) {
 
     const { data, error } = useSWR(
         `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`,
@@ -24,6 +25,7 @@ function ArtworkCard({objectId}) {
     return null;
     }
 
+    
   const { primaryImageSmall, title, objectDate, classification, medium } = data;
   const imageSrc = primaryImageSmall || 'https://via.placeholder.com/375x375.png?text=[+Not+Available+]';
   const artworkTitle = title || 'N/A';
@@ -31,13 +33,12 @@ function ArtworkCard({objectId}) {
   const artworkClassification = classification || 'N/A';
   const artworkMedium = medium || 'N/A';
 
-
     return(
         <>  
-    <Card  style={{ width: '18rem' , height:'35rem', overflow:'auto'}}>
+    <Card className={`${styles.card}`} >
       <Card.Img style={{height:'15rem'}} variant="top" src={imageSrc} />
       <Card.Body style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <Card.Title>{artworkTitle}</Card.Title>
+        <Card.Title style={{color:'blue'}}>{artworkTitle}</Card.Title>
         <Card.Text style={{height:'11rem', overflow:'auto'}}>
           Date: {artworkDate}
           <br />

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import styles from './Search.module.css';
+import styles from '../styles/Search.module.css';
 
 
 function Search(){
@@ -15,6 +15,10 @@ function Search(){
     console.log(data)
 
     let queryString = `${data.searchBy}=true`;
+    //Api doesnt provide correct data for hasImages flag but functionality working properly I tried with hasImages false and true with false got 1059 artwork and when it was true got 850 
+    if(data.imageOnly){
+        queryString += `&hasImages=${data.imageOnly}`
+    }
 
     if(data.geoLocation){
       queryString += `&geoLocation=${data.geoLocation}`
@@ -78,6 +82,12 @@ function Search(){
               label="Currently on View"
               name="isOnView"
               {...register("isOnView")}
+            />
+            <Form.Check
+              type="checkbox"
+              label="Image Only"
+              name="imageOnly"
+              {...register("imageOnly")}
             />
           </Col>
         </Row>
