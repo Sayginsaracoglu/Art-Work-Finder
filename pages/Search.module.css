@@ -1,0 +1,35 @@
+.required {
+    color: red;
+  }
+  
+
+.centered-label {
+    text-align: center;
+}
+
+.form-dark {
+    padding: 15px;
+    background-color: #212529;
+    border-radius: 15px;
+}
+
+.input-dark{
+    padding: 15px;
+    background-color: rgb(33, 33, 33);
+    border-radius: 15px;
+}
+
+.form-dark select {
+    color: #ffffff;
+    background-color: #212121;
+    border: none;
+    height: 57px;
+    border-radius: 15px;
+}
+  
+.form-dark select option {
+    background-color: #212121;
+    color: #ffffff;
+    height: 55px;
+}
+

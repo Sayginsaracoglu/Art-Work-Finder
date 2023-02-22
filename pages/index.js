@@ -1,65 +1,24 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Image from 'react-bootstrap/Image';
+import { Row, Col } from 'react-bootstrap';
 
-export default function Home() {
+function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
+      <h2>The Metropolitan Museum of Art</h2>
+      <Image style={{boxShadow: '1px 6px 6px 1px black'}} src="https://upload.wikimedia.org/wikipedia/commons/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg" fluid rounded />
+      <br />
+      
+      <Row>
+        <Col md={6}>
+          <p>The Metropolitan Museum of Art, colloquially "the Met", is located in New York City and is the largest art museum in the United States. With 7.06 million visitors in 2016, it was the second most visited art museum in the world, and the fifth most visited museum of any kind. Its permanent collection contains over 2 million works, divided among 17 curatorial departments.</p>
+        </Col>
+        <Col md={6}>
+          <p>The main building, located on the eastern edge of Central Park along Museum Mile, is by area one of the world's largest art galleries. There is also a much smaller second location at "The Cloisters" in Upper Manhattan that features medieval art.</p>
+          <a href="https://en.wikipedia.org/wiki/Metropolitan_Museum_of_Art" target="_blank" rel="noreferrer">Read more on Wikipedia</a>
+        </Col>
+      </Row>
     </div>
-  )
+  );
 }
+
+export default Home;

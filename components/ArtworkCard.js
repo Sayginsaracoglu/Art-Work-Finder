@@ -1,0 +1,59 @@
+import { useState } from 'react';
+import { SWRConfig } from 'swr';
+import Link from 'next/link';
+import { Card, Button } from 'react-bootstrap';
+import Error from 'next/error';
+import useSWR from 'swr';
+
+
+function ArtworkCard({objectId}) {
+
+    const { data, error } = useSWR(
+        `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`,
+        {
+          revalidateOnFocus: false,
+          errorRetryCount: 0
+        }
+    );
+
+    if (error) {
+        return <Error statusCode={404} />;
+    }
+
+    if (!data) {
+    return null;
+    }
+
+  const { primaryImageSmall, title, objectDate, classification, medium } = data;
+  const imageSrc = primaryImageSmall || 'https://via.placeholder.com/375x375.png?text=[+Not+Available+]';
+  const artworkTitle = title || 'N/A';
+  const artworkDate = objectDate || 'N/A';
+  const artworkClassification = classification || 'N/A';
+  const artworkMedium = medium || 'N/A';
+
+
+    return(
+        <>  
+    <Card  style={{ width: '18rem' , height:'35rem', overflow:'auto'}}>
+      <Card.Img style={{height:'15rem'}} variant="top" src={imageSrc} />
+      <Card.Body style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Card.Title>{artworkTitle}</Card.Title>
+        <Card.Text style={{height:'11rem', overflow:'auto'}}>
+          Date: {artworkDate}
+          <br />
+          Classification: {artworkClassification}
+          <br />
+          Medium: {artworkMedium}
+        </Card.Text>
+        <Link href={`/artwork/${objectId}`} passHref>
+          <Button variant="primary">ID : {objectId}</Button>
+        </Link>
+      </Card.Body>
+    </Card>
+        </>
+
+    )
+
+}
+
+export default ArtworkCard;
