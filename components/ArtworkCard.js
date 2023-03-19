@@ -5,9 +5,12 @@ import { Card, Button } from 'react-bootstrap';
 import Error from 'next/error';
 import useSWR from 'swr';
 import styles from '../styles/Card.module.css'
+import FavouritesIcon from './FavouritesIcon';
 
 
-function ArtworkCard({objectId,imageOnly}) {
+function ArtworkCard({objectId}) {
+
+  
 
     const { data, error } = useSWR(
         `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`,
@@ -24,10 +27,18 @@ function ArtworkCard({objectId,imageOnly}) {
     if (!data) {
     return null;
     }
-
+  
     
-  const { primaryImageSmall, title, objectDate, classification, medium } = data;
-  const imageSrc = primaryImageSmall || 'https://via.placeholder.com/375x375.png?text=[+Not+Available+]';
+  const { primaryImageSmall,additionalImages, title, objectDate, classification, medium } = data;
+let imageSrc = '';
+if (primaryImageSmall) {
+  imageSrc = primaryImageSmall;
+} else if (additionalImages.length > 0) {
+  imageSrc = additionalImages[0];
+} else {
+  imageSrc = 'https://via.placeholder.com/375x375.png?text=[+Not+Available+]';
+}
+
   const artworkTitle = title || 'N/A';
   const artworkDate = objectDate || 'N/A';
   const artworkClassification = classification || 'N/A';
@@ -38,7 +49,8 @@ function ArtworkCard({objectId,imageOnly}) {
     <Card className={`${styles.card}`} >
       <Card.Img style={{height:'15rem'}} variant="top" src={imageSrc} />
       <Card.Body style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <Card.Title style={{color:'blue'}}>{artworkTitle}</Card.Title>
+        <Card.Title style={{color:'white'}}>{artworkTitle}</Card.Title>
+        <FavouritesIcon objectId={objectId} />
         <Card.Text style={{height:'11rem', overflow:'auto'}}>
           Date: {artworkDate}
           <br />
@@ -47,7 +59,7 @@ function ArtworkCard({objectId,imageOnly}) {
           Medium: {artworkMedium}
         </Card.Text>
         <Link href={`/artwork/${objectId}`} passHref>
-          <Button variant="primary">ID : {objectId}</Button>
+          <Button className={`${styles.ButtonCard}`} variant="primary">ID : {objectId}</Button>
         </Link>
       </Card.Body>
     </Card>

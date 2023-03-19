@@ -1,3 +1,4 @@
+import validObjectIDList from '../../public/data/validObjectIDList.json';
 import { useEffect, useState, useRef } from 'react';
 import { SWRConfig } from 'swr';
 import { useRouter } from 'next/router';
@@ -8,6 +9,8 @@ import useSWR from 'swr';
 import { Row, Col } from 'react-bootstrap';
 import ArtworkCard from '../../components/ArtworkCard';
 import NumberFormat from 'react-number-format';
+import styles from '../../styles/Button.module.css'
+
 
 const PER_PAGE = 12;
 
@@ -18,6 +21,7 @@ function Home() {
   let finalQuery = router.asPath.split('?')[1];
   const pageNumberInput = useRef(null);
   const [pageNumberError, setPageNumberError] = useState('');
+
   
   const { data, error } = useSWR(
     `https://collectionapi.metmuseum.org/public/collection/v1/search?${finalQuery}`,
@@ -30,6 +34,7 @@ function Home() {
   useEffect(() => {
     if (data) {
       const results = [];
+      let filteredResults = validObjectIDList.objectIDs.filter(x => data.objectIDs?.includes(x));
       for (let i = 0; i < data?.objectIDs?.length; i += PER_PAGE) {
         const chunk = data?.objectIDs.slice(i, i + PER_PAGE);
         results.push(chunk);
@@ -76,7 +81,7 @@ function Home() {
         {artworkList.length > 0 ? (
           artworkList[page - 1].map((currentObjectID) => (
             <Col lg={4} key={currentObjectID}>
-              <ArtworkCard objectId={currentObjectID}  />
+              <ArtworkCard objectId={currentObjectID} />
             </Col>
           ))
         ) : (
@@ -92,27 +97,33 @@ function Home() {
       </Row>
       {artworkList.length > 0 && (
         <div className="d-flex justify-content-center mt-4">
-          <Pagination style={{ backgroundColor: 'black', borderRadius: '0.25rem' }}>
-            {page > 1 && <Pagination.Prev onClick={previousPage} />}
-            <Pagination.Item>{page}</Pagination.Item>
-            {page < artworkList.length && <Pagination.Next onClick={nextPage} />}
-          </Pagination>
-      
-          <form onSubmit={goToPage} className="ms-3">
-            <input
-              type="number"
-              min="1"
-              max={artworkList.length}
-              ref={pageNumberInput}
-              className="form-control form-control-sm d-inline-block mx-2"
-              style={{ maxWidth: '15rem' }}
-              placeholder={`Enter a page between 1 and ${artworkList.length}`}
-            />
-            <button type="submit" className="btn btn-primary btn-sm">Go to Page</button>
-          </form>
+          
+          <div className="d-flex justify-content-center mb-2">
+            
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+          <div className="d-flex justify-content-center mb-4">
+                <Pagination style={{ borderRadius: '0.25rem' }}>
+                  {page > 1 && <Pagination.Prev onClick={previousPage} />}
+                  <Pagination.Item>{page}</Pagination.Item>
+                  {page < artworkList.length && <Pagination.Next onClick={nextPage} />}
+                </Pagination>
+              </div>
+              <input
+                type="number"
+                min="1"
+                max={artworkList.length}
+                ref={pageNumberInput}
+                className="form-control form-control-sm d-inline-block mx-2"
+                style={{ width: '5rem', height: '37px', textAlign: 'center' }}
+                placeholder={`1 ... ${artworkList.length}`}
+              />
+              <button onClick={goToPage} type="submit" className={`btn btn-primary btn-sm ${styles.Button}`} style={{height:'35px', width:'5rem', marginTop: '3px', marginBottom: '15px' }}>Go</button>
+              
+            </div>
+          </div>
         </div>
       )}
     </>
-  )
+  );  
 }
 export default Home;

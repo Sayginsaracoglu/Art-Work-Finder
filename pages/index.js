@@ -1,11 +1,24 @@
+/*********************************************************************************
+*  WEB422 – Assignment 5
+*  I declare that this assignment is my own work in accordance with Seneca Academic Policy.  
+*  No part of this assignment has been copied manually or electronically from any other source
+*  (including web sites) or distributed to other students.
+* 
+*  Name: Saygin Saracoglu Student ID: 178139218  Date: 3/19/2023
+*
+*
+********************************************************************************/ 
+
+
 import Image from 'react-bootstrap/Image';
 import { Row, Col } from 'react-bootstrap';
+import Carousel from '../components/Carousel';
 
 function Home() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
       <h2>The Metropolitan Museum of Art</h2>
-      <Image style={{boxShadow: '1px 6px 6px 1px black'}} src="https://upload.wikimedia.org/wikipedia/commons/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg" fluid rounded />
+      <Carousel />
       <br />
       
       <Row>

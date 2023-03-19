@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import styles from '../styles/Search.module.css';
+import { useAtom } from 'jotai';
+import { searchHistoryAtom } from '../store';
 
 
 function Search(){
@@ -9,6 +11,7 @@ function Search(){
   const router= useRouter();   
   const { register, handleSubmit } = useForm();
 
+  const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
   
   
   function submitForm(data){
@@ -27,6 +30,15 @@ function Search(){
       queryString += `&medium=${data.medium}`
     }
     queryString += `&isOnView=${data.isOnView}&isHighlight=${data.isHighlight}&q=${data.q}`
+
+    const timestamp = new Date().toISOString(); 
+    const searchObject = {
+      query: queryString,
+      timestamp: timestamp
+    };
+
+    setSearchHistory(current => [...current, searchObject]);
+    console.log(searchHistory);
     router.push(`/artwork?${queryString}`)
   }
 
