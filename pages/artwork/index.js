@@ -88,7 +88,7 @@ function Home() {
           <Col>
             <Card>
               <Card.Body>
-                <h4>Nothing Here</h4>
+                <h4 style={{color : 'black'}}>Nothing Here</h4>
                 Try searching for something else.
               </Card.Body>
             </Card>
