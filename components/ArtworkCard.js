@@ -39,7 +39,7 @@ function ArtworkCard({ objectId }) {
   return (
     <Card className={`${styles.card} ${styles.modernCard}`}>
     <Card.Body style={{ display: 'flex', alignItems: 'center' }}>
-      <Card.Title style={{ color: '#fff', fontFamily: 'Roboto', fontWeight: 600, marginRight: 'auto' }}>{artworkTitle}</Card.Title>
+      <Card.Title style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#fff', fontFamily: 'Roboto', fontWeight: 600, marginRight: 'auto' }}>{artworkTitle}</Card.Title>
       <FavouritesIcon objectId={objectId} style={{ marginLeft: 'auto' }} />
     </Card.Body>
     <Link href={`/artwork/${objectId}`} passHref>
