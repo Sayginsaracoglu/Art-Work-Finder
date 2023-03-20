@@ -3,13 +3,15 @@ import '../styles/globals.css'
 import Layout from '../components/Layout';
 import { SWRConfig } from 'swr';
 import Head from 'next/head';
-
+import { useSSR } from '@nextui-org/react'
 
 
 
 
 function MyApp({ Component, pageProps }) {
+  const { isBrowser } = useSSR()
   return(
+    isBrowser && (
     <>
     <Head>
         <title>Saygin Saracoglu/Museum Project</title>
@@ -34,6 +36,7 @@ function MyApp({ Component, pageProps }) {
     </SWRConfig>
     </Layout>
     </>
+    )
   )
 }
 

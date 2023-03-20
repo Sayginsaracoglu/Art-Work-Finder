@@ -9,7 +9,6 @@
 *
 ********************************************************************************/ 
 
-
 import Image from 'react-bootstrap/Image';
 import { Row, Col } from 'react-bootstrap';
 import Carousel from '../components/Carousel';
