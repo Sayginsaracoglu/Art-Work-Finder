@@ -38,10 +38,11 @@ export default function history(){
     <>
       {searchHistory.length === 0 && (
         <Card>
-          <Card.Body>
-            <Card.Text>Nothing here. Try searching for some artwork.</Card.Text>
-          </Card.Body>
-        </Card>
+        <Card.Body>
+          <h4 style={{color : 'black'}}>Nothing Here</h4>
+          Try searching for some artwork.
+        </Card.Body>
+      </Card>
       )}
       {searchHistory.length > 0 && (
         <ListGroup>

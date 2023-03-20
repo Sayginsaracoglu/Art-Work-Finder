@@ -26,7 +26,7 @@ console.log(favouritesList.length)
         <Col>
           <Card>
             <Card.Body>
-              <h4>Nothing Here</h4>
+              <h4 style={{color : 'black'}}>Nothing Here</h4>
               Try adding some new artwork to the list.
             </Card.Body>
           </Card>

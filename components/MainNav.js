@@ -23,10 +23,26 @@ export default function MainNav() {
   }, []);
 
   const handleClickOutside = (event) => {
-    if (navRef.current && !navRef.current.contains(event.target)) {
-      setIsExpanded(false);
+    const path = event.path || (event.composedPath && event.composedPath());
+    
+    if (navRef.current && path) {
+      const isInsideDropdown = path.some(
+        (element) => element.classList && element.classList.contains('dropdown-menu')
+      );
+      if (!isInsideDropdown && !navRef.current.contains(event.target)) {
+        setIsExpanded(false);
+      }
     }
   };
+  
+  const handleDropdownClick = (event) => {
+    event.stopPropagation();
+  };
+  
+  const handleClickDropdownChild = (event) => {
+    setIsExpanded(false);
+  }
+  
 
   const onSubmit = (data) => {
     const searchField = data.search;
@@ -47,13 +63,13 @@ export default function MainNav() {
     setIsExpanded(!isExpanded);
   };
 
-  const handleNavClick = () => {
+  const handleNavClick = (event) => {
     setIsExpanded(false); // set isExpanded to false when a nav link is clicked
   };
 
   return (
     <>
-      <Navbar className="fixed-top navbar-dark bg-dark" expand="lg" expanded={isExpanded} ref={navRef}>
+      <Navbar style={{borderBottom : '15px solid #D2042D '}}  className="fixed-top navbar-dark bg-dark" expand="lg" expanded={isExpanded} ref={navRef}>
         <Container>
           <Link href="/" passHref legacyBehavior><Navbar.Brand>Saygin Saracoglu</Navbar.Brand></Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleExpanded} />
@@ -61,9 +77,9 @@ export default function MainNav() {
             <Nav className="me-auto" onClick={handleNavClick}>
               <Link href="/" passHref legacyBehavior><Nav.Link active={router.pathname === "/"}>Home</Nav.Link></Link>
               <Link href="/search" passHref legacyBehavior><Nav.Link active={router.pathname === "/search"}>Advanced Search</Nav.Link></Link>
-              <NavDropdown title="More" id="basic-nav-dropdown" style={{color:'white'}} active={router.pathname === "/favourites" || router.pathname === "/history"}>
-                <Link href="/favourites" passHref legacyBehavior><NavDropdown.Item active={router.pathname === "/favourites"}>Favourites</NavDropdown.Item></Link>
-                <Link href="/history" passHref legacyBehavior><NavDropdown.Item active={router.pathname === "/history"}>Search History</NavDropdown.Item></Link>
+              <NavDropdown onClick={handleDropdownClick} title="More" id="basic-nav-dropdown" style={{color:'white'}} active={router.pathname === "/favourites" || router.pathname === "/history"}>
+                <Link href="/favourites" passHref legacyBehavior><NavDropdown.Item onClick={handleClickDropdownChild} active={router.pathname === "/favourites"}>Favourites</NavDropdown.Item></Link>
+                <Link href="/history" passHref legacyBehavior><NavDropdown.Item onClick={handleClickDropdownChild} active={router.pathname === "/history"}>Search History</NavDropdown.Item></Link>
               </NavDropdown>
             </Nav>
             <Form className="d-flex" onSubmit={handleSubmit(onSubmit)}>
@@ -82,6 +98,7 @@ export default function MainNav() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <br />
       <br />
       <br />
     </>
