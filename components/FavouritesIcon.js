@@ -1,24 +1,29 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { favouritesAtom } from '../store.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
+import { addToFavourites, removeFromFavourites } from '../lib/userData';
 
 function FavouritesIcon({objectId}) {
 
   const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-  const [showAdded, setShowAdded] = useState(favouritesList.includes(objectId));
+  const [showAdded, setShowAdded] = useState(false);
 
-  function favouritesClicked() {
+  useEffect(()=>{
+    setShowAdded(favouritesList?.includes(objectId))
+  }, [favouritesList])
+
+
+  async function favouritesClicked() {
     if (showAdded) {
-      const updatedList = favouritesList.filter(fav => fav != objectId);
-      setFavouritesList(updatedList);
+      setFavouritesList(await removeFromFavourites(objectId))
       setShowAdded(false);
     } else {
-      const updatedList = [...favouritesList, objectId.toString()];
-      setFavouritesList(updatedList);
+      
+      setFavouritesList(await addToFavourites(objectId))
       setShowAdded(true);
     }
   }

@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import { SWRConfig } from 'swr';
 import Head from 'next/head';
 import { useSSR } from '@nextui-org/react'
+import RouteGuard from '../components/RouteGuard';
 
 
 
@@ -15,7 +16,9 @@ function MyApp({ Component, pageProps }) {
     <>
     <Head>
         <title>Saygin Saracoglu/Museum Project</title>
+        
     </Head>
+    <RouteGuard>
     <Layout>
     <SWRConfig value={{
       fetcher: async url => {
@@ -35,6 +38,7 @@ function MyApp({ Component, pageProps }) {
       
     </SWRConfig>
     </Layout>
+    </RouteGuard>
     </>
     )
   )

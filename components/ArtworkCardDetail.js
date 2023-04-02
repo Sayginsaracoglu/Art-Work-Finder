@@ -5,6 +5,7 @@ import Error from 'next/error';
 import FavouritesIcon from './FavouritesIcon';
 import styles from '../styles/CardDetails.module.css';
 
+
 const ArtworkCardDetail = ({ objectId }) => {
   const { data, error } = useSWR(objectId ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}` : null);
 

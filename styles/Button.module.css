@@ -9,5 +9,23 @@
     background-color: #1671cd;
     color:aliceblue;
     border-color: #898989;
+    
+}
+
+.RegisterLoginBtn{
+    width: '100%';
+    margin-bottom: '15px';
+    background-color: #D2042D;
+    border: none;
+    transition: background 0.37s ease-out;
+   
+}
+
+.RegisterLoginBtn:hover{
+    background-color: #9f0524;
+}
+
+.userInput::placeholder{
+    color: white;
 }
 

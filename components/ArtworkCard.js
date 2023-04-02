@@ -5,7 +5,6 @@ import { Card, Button } from 'react-bootstrap';
 import Error from 'next/error';
 import useSWR from 'swr';
 import styles from '../styles/Card.module.css';
-import FavouritesIcon from './FavouritesIcon';
 
 function ArtworkCard({ objectId }) {
   const { data, error } = useSWR(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`, {
@@ -40,7 +39,7 @@ function ArtworkCard({ objectId }) {
     <Card className={`${styles.card} ${styles.modernCard}`}>
     <Card.Body style={{ display: 'flex', alignItems: 'center' }}>
       <Card.Title style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#fff', fontFamily: 'Roboto', fontWeight: 600, marginRight: 'auto' }}>{artworkTitle}</Card.Title>
-      <FavouritesIcon objectId={objectId} style={{ marginLeft: 'auto' }} />
+      
     </Card.Body>
     <Link href={`/artwork/${objectId}`} passHref>
     <Card.Img style={{ height: '15rem', borderRadius: '15px', boxShadow: '-10px 15px 7px rgba(0, 0, 0, .7), 10px 15px 7px rgba(0, 0, 0, .7)', objectFit: 'cover' }} variant="top" src={imageSrc} />

@@ -4,6 +4,7 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import styles from '../styles/Search.module.css';
 import { useAtom } from 'jotai';
 import { searchHistoryAtom } from '../store';
+import { addToHistory } from "../lib/userData";
 
 
 function Search(){
@@ -14,7 +15,7 @@ function Search(){
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
   
   
-  function submitForm(data){
+  async function submitForm(data){
     console.log(data)
 
     let queryString = `${data.searchBy}=true`;
@@ -37,7 +38,8 @@ function Search(){
       timestamp: timestamp
     };
 
-    setSearchHistory(current => [...current, searchObject]);
+    const searchObjectString = JSON.stringify(searchObject);
+    setSearchHistory(await addToHistory(searchObjectString)) 
     console.log(searchHistory);
     router.push(`/artwork?${queryString}`)
   }

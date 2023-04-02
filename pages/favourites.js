@@ -10,8 +10,9 @@ function favourites() {
 
 const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
 
-console.log(favouritesList)
-console.log(favouritesList.length)
+if(!favouritesList) return null;
+
+
 
   return (
     <>
