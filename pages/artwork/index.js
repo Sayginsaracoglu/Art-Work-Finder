@@ -108,15 +108,6 @@ function Home() {
                 flexDirection: "column",
               }}
             >
-              <div className="d-flex justify-content-center mb-4">
-                <Pagination style={{ borderRadius: "0.25rem" }}>
-                  {page > 1 && <Pagination.Prev onClick={previousPage} />}
-                  <Pagination.Item>{page}</Pagination.Item>
-                  {page < artworkList.length && (
-                    <Pagination.Next onClick={nextPage} />
-                  )}
-                </Pagination>
-              </div>
               <input
                 type="number"
                 min="1"
@@ -139,6 +130,15 @@ function Home() {
               >
                 Go
               </button>
+              <div className="d-flex justify-content-center mb-4">
+                <Pagination style={{ borderRadius: "0.25rem" }}>
+                  {page > 1 && <Pagination.Prev onClick={previousPage} />}
+                  <Pagination.Item>{page}</Pagination.Item>
+                  {page < artworkList.length && (
+                    <Pagination.Next onClick={nextPage} />
+                  )}
+                </Pagination>
+              </div>
             </div>
           </div>
         </div>
