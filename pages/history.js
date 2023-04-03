@@ -12,7 +12,6 @@
 //     if(!searchHistory) return null;
 //     let parsedHistory = [];
 
-
 //     searchHistory.forEach(h => {
 //       let parsedHistoryItem = {};
 //       try {
@@ -30,13 +29,13 @@
 
 //     async function removeHistoryClicked(e,index){
 //         e.stopPropagation(); // stop the event from trigging other events
-        
-//         setSearchHistory(await removeFromHistory(JSON.stringify(searchHistory[index].query))) 
+
+//         setSearchHistory(await removeFromHistory(JSON.stringify(searchHistory[index].query)))
 //         // setSearchHistory(current => {
 //         //     let x = [...current];
 //         //     x.splice(index, 1)
 //         //     return x;
-//         // });   
+//         // });
 //     }
 
 //     function capitalizeFirstLetter(str) {
@@ -66,7 +65,7 @@
 //                     {capitalizeFirstLetter(key)}: <strong>{queryObj[key]}</strong>&nbsp;
 //                   </React.Fragment>
 //                 ))}
-                
+
 //                 <Button
 //                   className="float-end ms-3"
 //                   variant="danger"
@@ -84,28 +83,27 @@
 //   )
 // }
 
-import React from 'react';
-import { useAtom } from 'jotai';
-import { searchHistoryAtom } from '../store';
-import { useRouter } from 'next/router';
-import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
-import styles from '../styles/History.module.css';
-import { removeFromHistory } from '../lib/userData';
+import React from "react";
+import { useAtom } from "jotai";
+import { searchHistoryAtom } from "../store";
+import { useRouter } from "next/router";
+import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import styles from "../styles/History.module.css";
+import { removeFromHistory } from "../lib/userData";
 
 export default function History() {
   const router = useRouter();
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
-  console.log(typeof searchHistory)
+  console.log(typeof searchHistory);
   if (!searchHistory) return null;
 
   const parsedHistory = [];
-  searchHistory.forEach(doc => {
+  searchHistory.forEach((doc) => {
     const searchObject = JSON.parse(doc);
     const query = searchObject.query;
     const timestamp = searchObject.timestamp;
     parsedHistory.push({ query, timestamp });
   });
-  
 
   async function historyClicked(e, index) {
     const query = parsedHistory[index].query;
@@ -128,7 +126,7 @@ export default function History() {
       {searchHistory.length === 0 && (
         <Card>
           <Card.Body>
-            <h4 style={{ color: 'black' }}>Nothing Here</h4>
+            <h4 style={{ color: "black" }}>Nothing Here</h4>
             Try searching for some artwork.
           </Card.Body>
         </Card>
@@ -143,19 +141,19 @@ export default function History() {
               <ListGroup.Item
                 className={styles.historyListItem}
                 key={index}
-                onClick={e => historyClicked(e, index)}
+                onClick={(e) => historyClicked(e, index)}
               >
                 <span className="float-start ms-3">
                   {timestamp}&nbsp;&nbsp;|&nbsp;&nbsp;
                 </span>
-                <div style={{overflow:'hidden',}}>
-                   <strong>{queryObj}</strong>&nbsp;
+                <div style={{ overflow: "hidden" }}>
+                  <strong>{queryObj}</strong>&nbsp;
                 </div>
                 <Button
                   className="float-end ms-3"
                   variant="danger"
                   size="sm"
-                  onClick={e => removeHistoryClicked(e, index)}
+                  onClick={(e) => removeHistoryClicked(e, index)}
                 >
                   &times;
                 </Button>

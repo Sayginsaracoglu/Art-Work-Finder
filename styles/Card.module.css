@@ -1,31 +1,31 @@
-.card{
-    background-color: #252525;
-    color:#ffffff;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+.card {
+  background-color: #252525;
+  color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.modernCard:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.modernCard .ButtonCard {
+  background-color: #eb2329;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+}
+
+.modernCard .ButtonCard:hover {
+  background-color: #c32612;
+  border: none;
+}
+
+@media (max-width: 400px) {
+  .card {
+    height: 37.5rem;
+    overflow: auto;
   }
-  
-  .modernCard:hover{
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-  }
-  
-  .modernCard .ButtonCard{
-    background-color: #3d59f8;
-    color: #fff;
-    border-color: #2196f3;
-    border-radius: 50px;
-  }
-  
-  .modernCard .ButtonCard:hover{
-    background-color: #1976d2;
-    border-color: #1976d2;
-  }
-  
-  @media (max-width: 400px) {
-    .card{
-      height: 35rem;
-      overflow: auto;
-    }
-  }
+}

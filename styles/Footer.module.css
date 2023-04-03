@@ -1,13 +1,11 @@
-.footer{
-  
+.footer {
   color: white;
   padding-top: 12px;
   align-items: center;
 }
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}

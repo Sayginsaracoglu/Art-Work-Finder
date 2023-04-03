@@ -1,37 +1,36 @@
 .artwork-card {
-    background-color: #252525;
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 5px 4px 25px rgba(0, 0, 0, 1);
-  }
-  
-  .artwork-card .card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .artwork-card .card-info {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-  }
-  
-  .artwork-card .card-info__row {
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-  }
-  
-  .artwork-card .card-info__label {
-    font-weight: bold;
-    margin-right: 0.5rem;
-  }
-  
-  .artwork-card .card-artist {
-    display: block;
-    margin-top: 1rem;
-  }
-  
+  background-color: #252525;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 5px 4px 25px rgba(0, 0, 0, 1);
+}
+
+.artwork-card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.artwork-card .card-info {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.artwork-card .card-info__row {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.artwork-card .card-info__label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.artwork-card .card-artist {
+  display: block;
+  margin-top: 1rem;
+}
