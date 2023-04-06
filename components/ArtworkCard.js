@@ -54,18 +54,20 @@ function ArtworkCard({ objectId }) {
           justifyContent: "center",
         }}
       >
-        <Card.Title
-          style={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            color: "#fff",
-            fontFamily: "Roboto",
-            fontWeight: 600,
-          }}
-        >
-          {artworkTitle}
-        </Card.Title>
+        <Link href={`/artwork/${objectId}`} passHref>
+          <Card.Title
+            style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              color: "#fff",
+              fontFamily: "Roboto",
+              fontWeight: 600,
+            }}
+          >
+            {artworkTitle}
+          </Card.Title>
+        </Link>
       </Card.Body>
       <Link href={`/artwork/${objectId}`} passHref>
         <Card.Img

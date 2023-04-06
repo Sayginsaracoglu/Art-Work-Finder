@@ -5,16 +5,20 @@ function MyCarousel() {
     <Carousel fade>
       <Carousel.Item>
         <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg"
+          style={{ width: "100%", height: "auto" }}
+          src="/Met1.avif"
           fluid
           rounded
+          alt="Central Park, NYC"
         />
       </Carousel.Item>
       <Carousel.Item>
         <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/a/ac/The_Met_Cloisters.jpg"
+          style={{ width: "100%", height: "auto" }}
+          src="/Met2.avif"
           fluid
           rounded
+          alt="Met Cloister"
         />
       </Carousel.Item>
     </Carousel>
