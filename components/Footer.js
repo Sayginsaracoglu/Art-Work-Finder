@@ -7,7 +7,7 @@ function Footer() {
       className={`fixed-bottom mt-5 bg-dark text-center ${styles.footer}`}
     >
       <Container className={styles["footer-content"]}>
-        <p>&copy; Saygin Saracoglu {new Date().getFullYear()}</p>
+        <p>&copy;{new Date().getFullYear()} Saygin Saracoglu </p>
       </Container>
     </footer>
   );
